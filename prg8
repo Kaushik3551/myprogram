@@ -1,0 +1,30 @@
+ sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+ http://localhost:8080
+ mvn archetype:generate -DgroupId=com.example -DartifactId=demo2 \-DarchetypeGroupId=org.apache.maven.archetypes \-DarchetypeArtifactId=maven-archetype-quickstart \-DarchetypeVersion=1.4 -DinteractiveMode=false
+ cd demo2
+
+
+
+
+
+
+ ls target/*.jar
+ readlink -f target/*.jar
+
+ -name: Deploy artifact built by Jenkins
+
+hosts: localhost
+
+become: true
+
+tasks:
+
+- name: Copy JAR to deployment folder
+
+copy:
+
+src:/home/neha/demo/demo-1.0-SNAPSHOT.Jar
+
+dest:/opt/deploy/dem
+
+/home/neha/demo2/target/demo2-1.0-SNAPSHOT.Jar
